@@ -1,6 +1,8 @@
 % RoboterSysteme WS2020/21
 % CheckTarget KUKA youbot
-% 30.11.2020 Gerald Hebinck
+% 01.12.2020 Gerald Hebinck
+% takes target as vector with x, y, z, psi
+% returns 0 for reachable, -1 for to close, 1 for to far away
 
 function retval = check_target(target)
     
@@ -22,26 +24,33 @@ function retval = check_target(target)
     y = target(2);
     z = target(3);
     psi = target(4);
-    theta5 = target(5);
-
-    theta2_num = z - link12_length - link45_length * sin(psi);
-    theta2_denum = link23_offset + link34_offset;
-    theta2 = acos(theta2_num / theta2_denum);
     
-    theta4 = (pi/2) - psi - theta2;
+    % Calculate theta2
+    theta2_num   = z - link12_length - link45_length * sin(psi);
+    theta2_denum = link23_offset + link34_offset;
+    theta2       = acos(theta2_num / theta2_denum);
 
-    part_xyz = sqrt((z - link12_length)^2 + x^2 + y^2);
-    part_l45 = link45_length * (1 - cos(theta4));
+    % Calculate r, z, abs of both and offset
+    part_r   = sqrt(x^2 + y^2) - link45_length * cos(psi)
+    part_z   = z - link12_length - link45_length * sin(psi)
+    part_xyz = sqrt( part_r^2 + part_z^2)
     part_l12 = link12_offset * sin(theta2);
+    
+    % Calculate max_length and the needed length
+    max_length = link23_offset + link34_offset
+    max_test   = part_xyz - part_l12;
+    
+    % Calculate the minimal target
+    %min_r = sqrt(x^2 + y^2) - link12_offset - cos(psi) * link45_length;
+    min_r = part_r - link12_offset;
+    %min_z = z - link12_length - link45_length * sin(psi);
+    min_z = part_z;
 
-    max_length = link23_offset + link34_offset + link45_length;
-    max_test = part_xyz + part_l45 - part_l12;
-
-    min_a = sqrt(x^2 + y^2) - link12_offset - cos(psi) * link45_length;
-    min_b = z - link12_length - link45_length * sin(psi);
-    min_test = sqrt(min_a^2 + min_b^2);
+    % Calculate min_length and the needed length
+    min_test   = sqrt(min_r^2 + min_z^2);
     min_length = sqrt(link23_offset^2 + link34_offset^2 - (2*link23_offset * link34_offset * cos(pi - theta3_max)));
     
+    % Evaluation of results
     if(max_length > max_test)
         if(min_length < min_test)
             retval = 0;
@@ -51,5 +60,4 @@ function retval = check_target(target)
     else
         retval = 1;
     end
-    
 end
