@@ -14,6 +14,21 @@ z_sicherheit = 30;
 inverse = inverse_youbot_real([PunktZuGreiferX PunktZuGreiferY PunktZuGreiferZ+z_sicherheit -pi/2 0]); 
 
 
+if(abs(inverse(2))>deg2rad(160))
+    error("ueberschritt in theta 2")    
+end
+if(abs(inverse(3)>deg2rad(100)))
+    error("ueberschritt in theta 3")    
+end
+if(abs(inverse(3)<deg2rad(-75)))
+    error("unterschritt in theta 3")    
+end
+if(abs(inverse(4))>deg2rad(105))
+    disp(rad2deg(inverse(4)))
+    error('ueberschritt in theta 4')    
+end
+
+
 
 disp(inverse)
 
