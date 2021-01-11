@@ -29,5 +29,9 @@ alph = rad2deg(alpha_2);
 
 r = sqrt(c^2+x^2-2*x*c*cos(pi-abs(alpha_2)));
 alpha = asin(x/r*(sin(pi-abs(alpha_2))));
+
+%Y_Pos=[r alpha];
+
+
                                                                                                     
 
