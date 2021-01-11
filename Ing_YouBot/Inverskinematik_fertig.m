@@ -33,9 +33,9 @@ z_d=z-a_1;
 
 theta_1=atan2(y,x);
 
-r_4=r_d-a_4*cos(psi); %war r_4=r_d-a_4*cos(deg2rad(psi));
+r_4=r_d-a_4*cos(psi);
 
-z_4=z_d-a_4*sin(psi); %war z_4=z_d-a_4*sin(deg2rad(psi));
+z_4=z_d-a_4*sin(psi);
 
 s=sqrt(r_4^2+z_4^2);
 
@@ -44,13 +44,14 @@ alpha=atan2(z_4,r_4);
 beta=acos((-s^2+a_2^2+a_3^2)/(2*a_2*a_3));
 
 %Berechnung der Winkel
-theta_3=-(beta-pi);                             %war theta_3=beta-deg2rad(180);
-theta_2=pi/2 -(alpha+ asin((sin(beta)*a_3)/s)); %war theta_2=alpha+ asin((sin(beta)*a_3)/s);
-theta_4=-(psi+theta_2+theta_3-(pi/2));          %war theta_4=psi-theta_2-theta_3;
+theta_3=-(beta-pi);
+theta_2=pi/2 -(alpha+ asin((sin(beta)*a_3)/s));
+%psi = 0 = -theta2-theata3-theta4+pi/2
+theta_4=-(psi+theta_2+theta_3-(pi/2));
 theta_5=Koordinaten(5);
 % theta_2=rad2deg(theta_2);
 % theta_3=rad2deg(theta_3);
 % theta_4=rad2deg(theta_4);
 
 
-Winkel=[theta_1 theta_2 theta_3 theta_4 theta_5];
+Winkel=[theta_1 theta_2 theta_3 theta_4 theta_5]
