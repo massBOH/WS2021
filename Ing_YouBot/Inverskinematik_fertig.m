@@ -28,7 +28,7 @@ theta_1=atan2(y,x);
 d=sqrt(x^2+y^2);
 z_d=z-a_1;
 
-if(abs(theta_1)<deg2rad(170))
+if(abs(theta_1)<deg2rad(155))
     
     %benötigte Werte
     r_d=d-d_1;
@@ -54,9 +54,9 @@ else
     %benötigte Werte
     r_d=d+d_1;
     if(theta_1>0)
-        theta_1=theta_1-pi;
+        theta_1=-(theta_1-pi);
     else
-        theta_1=theta_1+pi;
+        theta_1=-(theta_1+pi);
     end
 
     r_4=r_d-a_4*cos(psi);
