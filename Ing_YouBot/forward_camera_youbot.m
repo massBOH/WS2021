@@ -17,8 +17,8 @@ function eecp = forward_camera_youbot(theta_)
                  135,    0,     0, theta_(3)+theta_offset(3);
 %                  0, pi/2,     0, theta_(4)+theta_offset(4);
 %                  0,    0, 217.5, theta_(5)+theta_offset(5)
-                  75, pi/2,     0, theta_(4)+theta_offset(4);
-                 -65,   pi,    50, theta_(5)+theta_offset(5)    
+                   0, -pi/2,     0, theta_(4)+theta_offset(4);
+                  65,   pi,    50, theta_(5)+theta_offset(5)    
                ];
     eecp = 1;
 
