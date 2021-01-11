@@ -1,7 +1,5 @@
-
-
-GelenkPos(runROS,[170, 0, 0, 0, 0.296]);
-GreiferPos(runROS(),20);
+GelenkPos(runROS,[170, 0, 0, 0, 0.296]); %Erkennung Klotz
+GreiferPos(runROS(),20); % Greifer offen
 PaketPos_YB2 = KreisErkennung(runROS,'w','1',20,52,'Dtol',5,'Atol',10,'Sens',0.7,'Bild');
 
 disp(PaketPos_YB2);
@@ -36,7 +34,7 @@ GelenkPos(runROS,inverse); %vorgreif position
 
 GelenkPos(runROS,inverse_youbot_real([PunktZuGreiferX PunktZuGreiferY PunktZuGreiferZ -pi/2 0])); %runter zum greifen
 
-GreiferPos(runROS(),0);
+GreiferPos(runROS(),0); % greifer zu
 
 GelenkPos(runROS,inverse); 
 
