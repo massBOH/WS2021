@@ -1,8 +1,8 @@
-function [uebergabeX, uebergabeY, uebergabeZ] = ubergabe_erkennung()
+function [ubergabe_vektor] = ubergabe_erkennung()
 
 GelenkPos(runROS,[0, 0, 0, -pi/9, 0]); %erkennung anderer youbot in rad
 
-YB2_pos = KreisErkennung(runROS,'s','1',19,'Sens',0.8,'Bild'); %erkennungspunkte 
+YB2_pos = KreisErkennung(runROS,'s','1',19,'Sens',0.8,'Bild') %erkennungspunkte 
 Pos_YB2_1 = YB2_pos(:,1);
 Pos_YB2_2 = YB2_pos(:,2);
 
@@ -31,12 +31,19 @@ alpha2 = -(-pi/2 + (acos( (-b^2 + c^2 + a^2)/(-(2*a*c))))); % in rad
 
 
 offset_base = 110;
-YB2BaseCPX = mittelpunkt.X + offset_base*cos(alpha2);
-YB2BaseCPY = mittelpunkt.Y + offset_base*sin(alpha2);
-r = norm([YB2BaseCPX YB2BaseCPY]);
-phi = asin(offset_base/r*(sin(pi-abs(alpha2)))) + alpha1;% in rad
+YB2BaseCPX = mittelpunkt.X + offset_base*cos(alpha2)
+YB2BaseCPY = mittelpunkt.Y + offset_base*sin(alpha2)
+r = norm([YB2BaseCPX YB2BaseCPY])
+phi = asin(offset_base/r*(sin(pi-abs(alpha2)))) + alpha1 % in rad phi %muss positiv sein?
 
 psi = 0;
-uebergabeX = YB2BaseCPX/2 * phi;
-uebergabeY = YB2BaseCPY/2 * phi;
-uebergabeZ = HoeheZ(uebergabeX,uebergabeY,psi);
+uebergabeX = YB2BaseCPX/2
+uebergabeY = YB2BaseCPY/2 
+uebergabeZ = HoeheZ(uebergabeX,uebergabeY,psi)*0.9
+
+vorubergabeX = ((r/2)-20)*cos(phi)
+vorubergabeY = ((r/2)-20)*sin(phi)
+
+ubergabe_vektor = [uebergabeX uebergabeY uebergabeZ vorubergabeX vorubergabeY]
+
+end
