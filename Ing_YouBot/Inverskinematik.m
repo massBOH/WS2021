@@ -1,4 +1,4 @@
-function Winkel = Inverskinematik_fertig(Koordinaten)
+function Winkel = Inverskinematik(Koordinaten)
 
 % syms theta_1
 % syms theta_2
