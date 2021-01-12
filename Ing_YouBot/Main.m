@@ -21,10 +21,6 @@ GelenkPos(ros,kerzePOS);
 %Greifer öffnen
 %GreiferPos(ros, 20);
 
-%Position des anderen Youbots messen
-
-
-
 %Festlegung, ob dieser Youbot übergibt oder übernimmt
 master=1;   %master=1 -> dieser Youbot übergibt
             %master=0 -> dieser Youbot übernimmt           
@@ -35,25 +31,37 @@ if master==1
     GelenkPos(ros,kerzePOS);
 end
 
-GelenkPos(ros,camera_youbotPOS);
-Youbot_Pos=Youbot_Position();
-
-%Position vor der Übergabe bestimmen
-psi=0;
+%Position des anderen Youbots messen
+nodetect = 1;
+while (nodetect)
+    try
+        GelenkPos(ros,camera_youbotPOS);
+        Youbot_Pos=Youbot_Position();
+        nodetect = 0;
+    catch ME
+        disp("YouBot2 not detected");
+        pause(1);
+    end
+end
 
 %Übergabeposition bestimmen
-x_Uebergabe=(Youbot_Pos(1)/2)*cos(Youbot_Pos(2));
-y_Uebergabe=(Youbot_Pos(1)/2)*sin(Youbot_Pos(2));
-z_Uebergabe=Berechnung_Z(x_Uebergabe,y_Uebergabe,psi);
+psi = 0;
+r = Youbot_Pos(1)/2
+phi = Youbot_Pos(2)
+x_Uebergabe = (r)*cos(phi);
+y_Uebergabe = (r)*sin(phi);
+z_Uebergabe = Berechnung_Z(x_Uebergabe,y_Uebergabe,psi);
 
-x_Vorgabe=(Youbot_Pos(1)/2-20)*cos(Youbot_Pos(2));
-y_Vorgabe=(Youbot_Pos(1)/2-20)*sin(Youbot_Pos(2));
-z_Vorgabe=z_Uebergabe;
-%falls dieser Youbot den Klotz annimmt, muss Theta 5 angepasst werden
+%Position vor der Übergabe bestimmen
+x_Vorgabe = (r-20)*cos(phi);
+y_Vorgabe = (r-20)*sin(phi);
+z_Vorgabe = z_Uebergabe;
+
+%falls dieser Youbot den Klotz abgibt, muss Theta 5 angepasst werden
 if master==1
-        Theta_5=pi/2; 
+    Theta_5 = pi/2; 
 else
-        Theta_5=0;
+    Theta_5 = 0;
 end
 
 %Vorgabeposition anfahren
