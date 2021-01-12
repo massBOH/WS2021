@@ -39,4 +39,4 @@ phi = asin(offset_base/r*(sin(pi-abs(alpha2)))) + alpha1;% in rad
 psi = 0;
 uebergabeX = YB2BaseCPX/2 * phi;
 uebergabeY = YB2BaseCPY/2 * phi;
-uebergabeZ = Berechnung_Z(uebergabeX,uebergabeY,psi);
+uebergabeZ = HoeheZ(uebergabeX,uebergabeY,psi);
