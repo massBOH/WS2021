@@ -7,7 +7,7 @@ function k_Pos = Klotz_Position()
     disp(PaketPos_YB1);
 
     PunktZuGreiferX = -PaketPos_YB1.Y-5;
-    PunktZuGreiferY = PaketPos_YB1.X+10 ;
+    PunktZuGreiferY = PaketPos_YB1.X+13 ;
     PunktZuGreiferZ = PaketPos_YB1.Z + 10;
 
     k_Pos=[PunktZuGreiferX PunktZuGreiferY PunktZuGreiferZ 0 0];
