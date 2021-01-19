@@ -19,10 +19,10 @@ function theta = inverse_youbot_real(target_)
     d1 = DH_array(1,1);
 
     % Ziel in XY-Ebene
-    d = sqrt(x^2+y^2)%;
+    d = sqrt(x^2+y^2);
     
     % Ziel in Z minuus Laenge Joint1
-    zd = z - a1%;
+    zd = z - a1;
     
     % Winkel Joint1
     % mit atan2 und nicht acos(x/d) wegen Vorzeichen
@@ -31,31 +31,31 @@ function theta = inverse_youbot_real(target_)
     if(abs(theta1)<deg2rad(160))
     
         % Ziel in XY-Ebene minus Offset Joint1
-        rd = d - d1%;
+        rd = d - d1;
         % Ziel Joint4 XY
-        r4 = rd - a4 *cos(psi)%;
+        r4 = rd - a4 *cos(psi);
         % Ziel Joint4 Z
-        z4 = zd + a4 *sin(psi)%;
+        z4 = zd + a4 *sin(psi);
         % Strecke zwischen Joint2 und Joint4
-        s = sqrt(z4^2+r4^2)%;
+        s = sqrt(z4^2+r4^2);
         % Winkel zur Strecke Joint2Joint4
-        alpha = atan2(z4,r4)%;
+        alpha = atan2(z4,r4);
         % Gegenwinkel Joint3
         % Cosinussatz mit s = b, a2 = a, a3 = c
         % s^2 = a2^2 + a3^2 - 2 * a2 * a3 * cos(beta)
-        beta = acos((-s^2 + a2^2 + a3^2)/(2*a2*a3))%;
+        beta = acos((-s^2 + a2^2 + a3^2)/(2*a2*a3));
         % Winkel Joint3
-        theta3 = -(beta - pi)%;
+        theta3 = -(beta - pi);
         % Winkel Joint2
         % Sinussatz s/sin(beta) = a3/sin(epsilon)
         %epsilon = asin(sin(beta)*a3/s);
-        theta2 = pi/2 -(alpha + asin((sin(beta)*a3)/s))%;
+        theta2 = pi/2 -(alpha + asin((sin(beta)*a3)/s));
         
         % Winkel Joint4
-        theta4 = (psi - theta2 - theta3 + pi/2)%;
+        theta4 = (psi - theta2 - theta3 + pi/2);
         
         % Winkel Joint5
-        theta5 = target_(5)%;
+        theta5 = target_(5);
     else
         rd = d+d1;
         if(theta1>0)
@@ -88,6 +88,6 @@ function theta = inverse_youbot_real(target_)
     end
         
     % Winkel als Vektor
-    theta = [ theta1 theta2 theta3 theta4 theta5 ]
+    theta = [ theta1 theta2 theta3 theta4 theta5 ];
 end
 
