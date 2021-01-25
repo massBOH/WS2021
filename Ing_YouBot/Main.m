@@ -8,13 +8,13 @@ clc;
 %ROS-Verbindung initialisieren
 ros = runROS();
 
-theta2_min = deg2rad(-65);
-theta3_max = deg2rad(150);
-theta4_min = deg2rad(-95);
+myPub = rospublisher('YB1','std_msgs/Byte');
+rosmsg = rosmessage(myPub);
+mySub = rossubscriber('YB2','std_msgs/Byte');
 
-kerzePos = [0 0 0 0 0];
+kerzePos = deg2rad(myros.Arm.Info.JointUp) %[0 0 0 0 0];
 sicherPos = [0 deg2rad(-60) deg2rad(60) pi/2 0];
-parkPos = [0 theta2_min theta3_max theta4_min 0];
+parkPos = deg2rad(myros.Arm.Info.JointRes) %[0 deg2rad(-65) deg2rad(146) deg2rad(-102) 0];
 camera_youbotPOS = [0 0 0 deg2rad(-30) 0];
 camera_klotzPOS = [deg2rad(-170) 0 0 0 deg2rad(-12) 0];
 
@@ -96,7 +96,8 @@ z_Vorgabe = z_Uebergabe;
 
 %falls dieser Youbot den Klotz abgibt, muss Theta 5 angepasst werden
 if master==1
-    Theta_5 = pi/2; 
+    Theta_5 = pi/2;
+    sicherPos(5) = Theta_5; 
 else
     Theta_5 = 0;
 end
@@ -105,7 +106,7 @@ end
 %Sicherheitsabstand prüfen
 GelenkPos(ros,sicherPos);
 GelenkPos(ros, Inverskinematik([x_Vorgabe y_Vorgabe z_Vorgabe 0 Theta_5]))
-%Trajektorien_Youbot([x_Vorgabe, y_Vorgabe, z_Uebergabe; x_Uebergabe, y_Uebergabe, z_Uebergabe],Theta_5);
+%Trajektorien_Youbot(ros, [x_Vorgabe, y_Vorgabe, z_Uebergabe; x_Uebergabe, y_Uebergabe, z_Uebergabe],Theta_5);
 
 yb2_uebergabe = 0;
 if master==1
@@ -117,7 +118,7 @@ end
 GelenkPos(ros, Inverskinematik([x_Uebergabe y_Uebergabe z_Uebergabe 0 Theta_5]))
 
 %Übergabeposition anfahren
-%Trajektorien_Youbot([x_Uebergabe, y_Uebergabe, z_Uebergabe; x_Vorgabe, y_Vorgabe, z_Uebergabe],Theta_5);
+%Trajektorien_Youbot(ros, [x_Uebergabe, y_Uebergabe, z_Uebergabe; x_Vorgabe, y_Vorgabe, z_Uebergabe],Theta_5);
 
 %Klotz übernehmen/übergeben
 yb2_greiferzu = 0;
