@@ -2,11 +2,20 @@ rosshutdown
 
 rosinit
 
+% aktiv = 1;
+% master = 2;
+% posi = 4;
+% gripperZu = 8;
+% gedreht = 16;
+% ACK = 32;
+
 standby_int= 0;
 active_int = 1;
 master_int = 2;
-ubergabe_int  = 3;
-gripperz_int= 4; %zu
+ubergabe_int  = 4;
+gripperz_int= 8; %zu
+% gedreht = 16;
+% ACK = 32;
 
 
 Publisher=rospublisher('/YB1','std_msgs/Byte'); % Publisher für Hermes
@@ -18,6 +27,7 @@ lauschen=1;
 while lauschen == 1
         Nachricht.Data =active_int;
         send(Publisher,Nachricht);
+        disp("bereit und warte")
         
         try
            NaYB2 = receive(Subscriber, 0.1);
@@ -31,27 +41,60 @@ end
 
 
 disp('Beide Bots bereit')
+master = 2
 
+while master == 2
+    
+    
+    klotz_arr_ = KlotzPositionErkennen()
 
-try 
-    KlotzPositionAnfahren();
-    master = 1;
-    disp("master")
+    disp(klotz_arr_)
+
+    if isnan(klotz_arr_)
+
+            disp('gibts master?')
+            try
+               NaYB2 = receive(Subscriber, 0.1);
+               if NaYB2.Data==master_int
+                   master = 0;
+                    disp("slave")
+                    GreiferPos(runROS(),20); % Greifer offen
+
+               end
+
+            catch
+                continue
+            end
+
+        
+        
+    else
+
+        master = 1;
+        Nachricht.Data = master_int;
+        send(Publisher,Nachricht); 
+        KlotzPositionAnfahren(klotz_arr_);
+        disp("master")
     
-catch exception
-    master = 0;
-    disp("slave")
-    GreiferPos(runROS(),20); % Greifer offen
+    end
     
+   
 end
 
 
-for i = 1:5
 
-    erkannte_uebergabe = 0;
-    erkannte_uebergabe = ubergabe_erkennung();
-    if erkannte_uebergabe > 0
-     break
+
+
+for i = 1:20
+    try
+        erkannte_uebergabe = 0;
+        erkannte_uebergabe = ubergabe_erkennung();
+        if erkannte_uebergabe ~= 0
+         break
+        end
+    catch
+        disp("LICHT")
+        continue
     end
 
 end
@@ -123,8 +166,12 @@ else
     while lauschen == 1
         disp('Ist Master in Ubergabe?')
             try
+               Nachricht.Data =ubergabe_int;
+               send(Publisher,Nachricht);
                NaYB2 = receive(Subscriber, 0.1);
                if NaYB2.Data==ubergabe_int
+                   Nachricht.Data =32;
+                   send(Publisher,Nachricht);
                    lauschen = 0;
                end
 
@@ -132,6 +179,21 @@ else
             end
     end 
     GreiferPos(runROS(),0); % Greifer schließen
+    %% noch warten auf greifer offen
+    lauschen=1;
+    while lauschen == 1
+        disp('Ist Master offen?')
+            try
+               NaYB2 = receive(Subscriber, 0.1);
+               if NaYB2.Data==gripperz_int
+                   lauschen = 0;
+               end
+
+            catch
+            end
+    end 
+    
+    
 end
 
 
