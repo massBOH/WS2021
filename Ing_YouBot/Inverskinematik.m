@@ -79,5 +79,5 @@ else
     theta_2=-theta_2;
     theta_4=-theta_4;
 end
-Winkel=[theta_1 theta_2 theta_3 theta_4 theta_5]
+Winkel=[theta_1 theta_2 theta_3 theta_4 theta_5];
 

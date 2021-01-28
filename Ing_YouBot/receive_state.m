@@ -1,4 +1,4 @@
-function recieve_state(pub, sub, out, in)
+function receive_state(pub, sub, out, in)
     pubmsg = rosmessage(pub);
     submsg = rosmessage(sub);
     pubmsg.Data = out;
