@@ -127,7 +127,7 @@ end
 if master==1
     % Klotz aufnehmen
     disp('Picke Klotz')
-    Klotz_aufnehmen(ros, klotz_Pos);
+    Klotz_handling(ros, klotz_Pos, 1);
     disp('Fahre in Kerze');
     GelenkPos(ros,kerzePos);
 end
@@ -267,7 +267,7 @@ GelenkPos(ros,kerzePos);
 if master == 0
     % Klotz ablegen
     disp('Klotz ablegen');
-    Klotz_ablegen(ros, [-201.44 39.39 61.31 0 0]);
+    Klotz_handling(ros, [-201.44 39.39 61.31 0 0], 0);
     % In Kerzenposition fahren
     disp('Fahre in Kerze');
     GelenkPos(ros,kerzePos);

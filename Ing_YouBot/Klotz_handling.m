@@ -1,4 +1,4 @@
-function Klotz_aufnehmen(ROS, klotzPos, pick)
+function Klotz_handling(ROS, klotzPos, pick)
     kerzePos = [0 0 0 0 0];
     % Hoehenoffsets
     zPre = 5;
