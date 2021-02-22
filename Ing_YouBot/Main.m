@@ -72,7 +72,7 @@ GreiferPos(ros, 20);
 
 % YB2 Bereit?
 disp('Warte auf YB2 bereit')
-receive_state(myPub,mySub,aktiv,aktiv);
+active_state(myPub,mySub,aktiv,ACK);
 disp('Nachricht empfangen');
 
 % Manuelle Abfrage, als Sicherheitsfunktion

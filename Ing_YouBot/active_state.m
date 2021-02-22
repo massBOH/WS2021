@@ -1,24 +1,42 @@
-function active_state(pub, sub, out, in)
+function active_state(pub, sub, in, ACK)
     pubmsg = rosmessage(pub);
     submsg = rosmessage(sub);
-    pubmsg.Data = out;
+    pubmsg.Data = in;
     submsg.Data = 0;
-    % Senden eigene Nachricht, bis passende Nachricht empfangen wird
-    while not (submsg.Data == in)
+    % Senden der Nachricht, bis Nachricht oder Nachricht + ACK empfangen wird
+    while (submsg.Data == 0)
+        send(pub, pubmsg);
+        try
+            submsg = receive(sub, 0.1);
+            if not ((submsg == in) && (submsg == (in+ACK)))
+                submsg = 0
+            end
+        catch
+        end
+    end
+    % Senden der Nachricht + ACK, bis eine andere Nachricht empfangen wird
+    while (submsg.Data == in)
+        pubmsg.Data = in+ACK;
         send(pub, pubmsg);
         try
             submsg = receive(sub, 0.1);
         catch
         end
     end
-    % Weitersenden von eigener Nachricht, bis andere Nachricht nicht mehr empfangen
-    while (submsg.Data == in)
+    % Senden von ACK, bis andere Nachricht empfangen wird
+    while (submsg.Data == ACK+in)
+        pubmsg.Data = ACK;
         send(pub, pubmsg);
         try
             submsg = receive(sub, 0.5);
         catch
-            submsg.Data = 0;
         end
+    end
+    % 10 mal Senden von ACK
+    for index = 1:10
+        pubmsg.Data = ACK;
+        send(pub, pubmsg);
+        pause(0.10);
     end
 end
 
