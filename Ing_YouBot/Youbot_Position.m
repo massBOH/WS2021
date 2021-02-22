@@ -1,10 +1,10 @@
-function Y_Pos = Youbot_Position()
+function Y_Pos = Youbot_Position(ROS)
 
     % Abstand Marker_YB2 zu Base_YB2
-    x = 110;
+    d = 110;
 
     % Erkennen der Marker auf YB2
-    posYB2 = KreisErkennung(runROS, 'w','1',19,'Bild','Sens',0.8);
+    posYB2 = KreisErkennung(ROS, 'w','1',19,'Bild','Sens',0.8);
 
     % Zerlegen und Umwandeln der Rueckgabe
     posYB21 = posYB2(1);
@@ -26,11 +26,11 @@ function Y_Pos = Youbot_Position()
     alpha_2 = -(acos((a^2+c^2-b^2)/(2*a*c)) - pi/2);
 
     % Distanz YB1 zu YB2
-    r = sqrt(c^2+x^2-2*x*c*cos(pi-abs(alpha_2)));
-    alpha = asin(x/r*(sin(pi-abs(alpha_2))));
+    r = sqrt(c^2+d^2-2*x*c*cos(pi-abs(alpha_2)));
+    delta = asin(d/r*(sin(pi-abs(alpha_2))));
 
     % Winkel YB1 zu YB2
-    phi = alpha+alpha_1;
+    phi = alpha_1 + delta;
 
     % Rueckgabe r und phi
     Y_Pos=[r phi];

@@ -1,8 +1,8 @@
 %Ausgabe der Klotzposition für das Koordinatensystem des Armes
 
-function k_Pos = Klotz_Position()
+function k_Pos = Klotz_Position(ROS)
 
-    PaketPos_YB1=KreisErkennung(runROS, 'w','1',20,52,'Dtol',5,'Atol',10,'Sens',0.7,'Bild');
+    PaketPos_YB1=KreisErkennung(ROS, 'w','1',20,52,'Dtol',5,'Atol',10,'Sens',0.7,'Bild');
 
     disp(PaketPos_YB1);
 
