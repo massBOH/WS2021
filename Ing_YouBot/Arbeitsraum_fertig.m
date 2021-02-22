@@ -1,4 +1,12 @@
-function Arbeitsraum_fertig(Koordinaten)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Westfaelische Hochschule Fachbereich Maschinenbau
+% Modul Robotersysteme im WS20/21
+% G. Hebinck, N. Heier, E. Moellmann
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Funktion Arbeitsraum_fertig
+%
+% Prueft, ob ein Anfahren der Koordinaten moeglich ist.
 
 function erreichbar=Arbeitsraum_fertig(Koordinaten)
 
@@ -20,13 +28,13 @@ LinkLaenge_4 = 217.5;
 Rmax = 508;
 erreichbar = 0;
 
-% Berechnung für die Überprüfung des maximalen Radius
+% Berechnung fuer die Ueberpruefung des maximalen Radius
 theta_3 = 0;
 theta_2 = acos((z - LinkLaenge_1 - LinkLaenge_4 * sin(psi)) / (LinkLaenge_2 + LinkLaenge_3));
 theta_4 = pi / 2 - theta_2 + psi;
 R_1 = sqrt((z - z_Versatz)^2 + x^2 + y^2) + LinkLaenge_4 * cos(theta_4) - (r_Versatz * sin(theta_2));
 
-% Berechnung für die Überprüfung des minimalen Radius
+% Berechnung fuer die Ueberpruefung des minimalen Radius
 a = sqrt(x^2 + y^2) - r_Versatz - cos(psi) * LinkLaenge_4;
 b = z - z_Versatz - LinkLaenge_4 * sin(psi);
 R_2 = sqrt(a^2 + b^2);

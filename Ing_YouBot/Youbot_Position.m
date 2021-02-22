@@ -1,3 +1,16 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Westfaelische Hochschule Fachbereich Maschinenbau
+% Modul Robotersysteme im WS20/21
+% G. Hebinck, N. Heier, E. Moellmann
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Funktion Youbot_Position
+%
+% Ermitteln der Position des Partners
+% KreisErkennung und Ueberfuehrung der Kamerakoordinaten
+% in das Koordinatensystem des Roboters
+% Berechnung von Entfernung und Winkel
+
 function Y_Pos = Youbot_Position(ROS)
 
     % Abstand Marker_YB2 zu Base_YB2

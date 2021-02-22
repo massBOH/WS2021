@@ -66,7 +66,7 @@ ACK = 32;
 disp('Fahre in Kerze');
 GelenkPos(ros,kerzePos);
 
-% Greifer öffnen
+% Greifer oeffnen
 disp('Oeffne Greifer');
 GreiferPos(ros, 20);
 

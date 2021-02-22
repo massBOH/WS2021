@@ -1,3 +1,14 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Westfaelische Hochschule Fachbereich Maschinenbau
+% Modul Robotersysteme im WS20/21
+% G. Hebinck, N. Heier, E. Moellmann
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Funktion Klotz_handling
+%
+% Anfahren und aufnehmen/ablegen der uebergebenen
+% Klotzposition unter Pruefung der Winkelbegrenzungen
+
 function Klotz_handling(ROS, klotzPos, pick)
     kerzePos = [0 0 0 0 0];
     % Hoehenoffsets
@@ -27,9 +38,9 @@ function Klotz_handling(ROS, klotzPos, pick)
             % Anfahren Kerze
             GelenkPos(ROS, kerzePos);
         else
-            error('Winkelbegrenzung Klotz überschritten');
+            error('Winkelbegrenzung Klotz ueberschritten');
         end
     else
-        error('Winkelbegrenzung preKlotz überschritten');
+        error('Winkelbegrenzung preKlotz ueberschritten');
     end
 end

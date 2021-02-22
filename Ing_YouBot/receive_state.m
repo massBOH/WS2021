@@ -1,3 +1,13 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Westfaelische Hochschule Fachbereich Maschinenbau
+% Modul Robotersysteme im WS20/21
+% G. Hebinck, N. Heier, E. Moellmann
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Funktion receive_state
+%
+% Wartet auf eine Nachricht und bestaetigt den Erhalt
+
 function receive_state(pub, sub, out, in)
     pubmsg = rosmessage(pub);
     submsg = rosmessage(sub);

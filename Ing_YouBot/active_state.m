@@ -1,3 +1,15 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Westfaelische Hochschule Fachbereich Maschinenbau
+% Modul Robotersysteme im WS20/21
+% G. Hebinck, N. Heier, E. Moellmann
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Funktion active_state
+%
+% Stellt sicher, dass der Kommunikationskanal zum 
+% Kommunikationspartner verfuegbar ist.
+
+
 function active_state(pub, sub, in, ACK)
     pubmsg = rosmessage(pub);
     submsg = rosmessage(sub);

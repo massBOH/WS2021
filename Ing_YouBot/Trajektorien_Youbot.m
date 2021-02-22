@@ -1,3 +1,16 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Westfaelische Hochschule Fachbereich Maschinenbau
+% Modul Robotersysteme im WS20/21
+% G. Hebinck, N. Heier, E. Moellmann
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Funktion Trajektorien_Youbot
+%
+% Plant anhand der uebergebenen Punkte eine 
+% lineare Trajektorie durch Segmentierung. Faehrt
+% diese Trajektorie dann unter Beruecksichtigung
+% des Arbeitsraumes ab.
+
 function Trajektorien_Youbot(ROS, Punkte, Theta_5)
     %Einlesen Startpunkt - Endpunkt
 

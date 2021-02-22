@@ -1,4 +1,14 @@
-%Ausgabe der Klotzposition für das Koordinatensystem des Armes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Westfaelische Hochschule Fachbereich Maschinenbau
+% Modul Robotersysteme im WS20/21
+% G. Hebinck, N. Heier, E. Moellmann
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Funktion Klotz_Position
+%
+% Ermitteln der Klotz_Position anhand der KreisErkennung
+% und Ueberfuehrung der Kamerakoordinaten in das
+% Koordinatensystem des Roboters
 
 function k_Pos = Klotz_Position(ROS)
 

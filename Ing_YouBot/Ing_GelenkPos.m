@@ -1,4 +1,11 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Westfaelische Hochschule Fachbereich Maschinenbau
+% Modul Robotersysteme im WS20/21
+% G. Hebinck, N. Heier, E. Moellmann
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 % Funktion zum Verfahren der Gelenke
+%
 % Basiert auf GelenkPos_Flores.m
 % Implementiert einen P-Regler zum Anfahren der uebergebenen Achswinkel
 % Es sind min- und maxSpeed sowie eine Toleranz vorgegeben.
