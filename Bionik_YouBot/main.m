@@ -2,6 +2,15 @@
 % T. Thuilot und A. Heid
 
 % Main Funktion
+
+% zusätzlich benötigte Funktionen:
+% GelenkPos
+% GreiferPos
+% KreisErkennung
+% runROS
+% Hermes
+
+
 % zusätzlich zu starten sind:
 % roscore
 % roslaunch youbot_driver_ros_interface youbot_driver.launch            % Hardware
@@ -49,7 +58,7 @@ master = 2;
 % wird ein Klotz erkannt?
 while master == 2
     klotz_arr_ = KlotzPositionErkennen(); % versuchen einen Klotz zu erkennen
-    disp(klotz_arr_)
+    disp(klotz_arr_) % Vorgreifposition und Greifposition
     if isnan(klotz_arr_) % wenn kein Klotz erkannt wurde
             disp('gibts master?')
             try

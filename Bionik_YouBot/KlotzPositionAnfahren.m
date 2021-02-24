@@ -1,23 +1,32 @@
+% RSY 2020/21
+% T. Thuilot und A. Heid
+
+% Fährt die Position des Klotzes auf der Ablagefläche des youbots an
+
+
+
 function KlotzPositionAnfahren(klotz_arr)
 
-a = klotz_arr(1);
-b = klotz_arr(2);
-c = klotz_arr(3);
-d = klotz_arr(4);
-e = klotz_arr(5);
+% Vorgreifposition
+a = klotz_arr(1); % X
+b = klotz_arr(2); % Y
+c = klotz_arr(3); % Z
+d = klotz_arr(4); % psi
+e = klotz_arr(5); % Greifer pos
 
-f = klotz_arr(6);
-g = klotz_arr(7);
-h = klotz_arr(8);
-k = klotz_arr(9);
-l = klotz_arr(10);
+% Greifposition
+f = klotz_arr(6); % X
+g = klotz_arr(7); % Y
+h = klotz_arr(8); % Z
+k = klotz_arr(9); % psi
+l = klotz_arr(10); % Greifer pos
 
 
-GelenkPos(runROS,[a, b, c, d, e]); %vorgreif position
-GelenkPos(runROS,[f, g, h, k, l]); %runter zum greifen
+GelenkPos(runROS,[a, b, c, d, e]); % Vorgreifposition mit Sicherheit
+GelenkPos(runROS,[f, g, h, k, l]); % runter zum greifen
 
-GreiferPos(runROS(),0); % greifer zu
+GreiferPos(runROS(),0); % Greifer zu
 
-GelenkPos(runROS,[a, b, c, d, e]); 
+GelenkPos(runROS,[a, b, c, d, e]); % Vorgreifposition mit Sicherheit
 
-GelenkPos(runROS,[0, 0, 0, 0, 0]);
+GelenkPos(runROS,[0, 0, 0, 0, 0]); % Kerzenposition
