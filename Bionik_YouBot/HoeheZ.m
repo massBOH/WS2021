@@ -6,7 +6,7 @@
 
 function z_Koord = HoeheZ(x,y,psi)
 
-% Länge der Achsen
+% Länge der Links und Offsets
 a1 = 147;
 a2 = 155;
 a3 = 135;

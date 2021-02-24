@@ -12,14 +12,14 @@ a = klotz_arr(1); % X
 b = klotz_arr(2); % Y
 c = klotz_arr(3); % Z
 d = klotz_arr(4); % psi
-e = klotz_arr(5); % Greifer pos
+e = klotz_arr(5); % Theta5
 
 % Greifposition
 f = klotz_arr(6); % X
 g = klotz_arr(7); % Y
 h = klotz_arr(8); % Z
 k = klotz_arr(9); % psi
-l = klotz_arr(10); % Greifer pos
+l = klotz_arr(10); % Theta5
 
 
 GelenkPos(runROS,[a, b, c, d, e]); % Vorgreifposition mit Sicherheit
