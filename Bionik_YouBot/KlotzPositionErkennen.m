@@ -28,8 +28,9 @@ for i = 1:5 % mehrmals versuchen den Kreis auf dem Klotz zu erkennen
 
         z_sicherheit = 30; % Sicherheitsabstand
         inverse = inverse_youbot_real([PunktZuGreiferX PunktZuGreiferY PunktZuGreiferZ+z_sicherheit -pi/2 0]); % Vorgreifposition
+        Arbeitsraum([PunktZuGreiferX PunktZuGreiferY PunktZuGreiferZ+z_sicherheit -pi/2 0]); % Arbeitsraumabschätzung
         end_inverse = inverse_youbot_real([PunktZuGreiferX PunktZuGreiferY PunktZuGreiferZ -pi/2 0]); % Greifposition
-
+        Arbeitsraum([PunktZuGreiferX PunktZuGreiferY PunktZuGreiferZ -pi/2 0]); % Arbeitsraumabschätzung
         
         % Abfrage nach Winkelüberschreitungen bei der Vorgreifposition
         if(abs(inverse(2))>deg2rad(160))

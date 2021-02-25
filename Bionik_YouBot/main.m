@@ -123,7 +123,9 @@ end
 
 % inverse Kinematik für (vor-)übergabe Positionen berechnen
 voruebergabe = inverse_youbot_real([voruebergabeX voruebergabeY voruebergabeZ 0 theta5]); 
+Arbeitsraum([voruebergabeX voruebergabeY voruebergabeZ 0 theta5]); % Arbeitsraumabschätzung
 uebergabe = inverse_youbot_real([uebergabeX uebergabeY uebergabeZ 0 theta5]); 
+Arbeitsraum([uebergabeX uebergabeY uebergabeZ 0 theta5]); % Arbeitsraumabschätzung
 
 GelenkPos(runROS,voruebergabe); %voruebergabe position
 
