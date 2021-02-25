@@ -18,9 +18,10 @@
 % /usr/local/MATLAB/R2018b/bin/matlab -nodesktop -nosplash -r Hermes    % Datenaustausch
 
 
-% Initialisieren von ROS
+% Schließen von alten ROS nodes bei Neustart
 rosshutdown
 
+% Initialisieren von ROS
 rosinit
 
 % Variablen definieren
