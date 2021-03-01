@@ -36,7 +36,7 @@ function theta = inverse_youbot_real(target_)
     % mit atan2 und nicht acos(x/d) wegen Vorzeichen
     theta1 = atan2(y,x);
     
-    if(abs(theta1)<deg2rad(160)) % ?
+    if(abs(theta1)<deg2rad(160))
     
         % Ziel in XY-Ebene minus Offset Joint1
         rd = d - d1;
@@ -71,13 +71,13 @@ function theta = inverse_youbot_real(target_)
         
         % Winkel Joint5
         theta5 = target_(5);
-    else % ?
+    else
         
         % Ziel in XY-Ebene plus Offset Joint1
         rd = d + d1;
-        if(theta1>0) % ?
+        if(theta1>0)
             theta1 = theta1 - pi;
-        else % ?
+        else
             theta1 = theta1 + pi;
         end
         
